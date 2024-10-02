@@ -373,6 +373,48 @@ func Sm4Ecb(key []byte, in []byte, mode bool) (out []byte, err error) {
 	return out, nil
 }
 
+func Sm4EcbNoPadding(key []byte, in []byte, mode bool) (out []byte, err error) {
+	if len(key) != BlockSize {
+		return nil, errors.New("SM4: invalid key size " + strconv.Itoa(len(key)))
+	}
+	var inData []byte
+	
+	/*if mode {
+		inData = pkcs7Padding(in)
+		
+	} else {
+		inData = in
+	}
+ 	*/
+	
+	inData = in
+	
+	out = make([]byte, len(inData))
+	c, err := NewCipher(key)
+	if err != nil {
+		panic(err)
+	}
+	if mode {
+		for i := 0; i < len(inData)/16; i++ {
+			in_tmp := inData[i*16 : i*16+16]
+			out_tmp := make([]byte, 16)
+			c.Encrypt(out_tmp, in_tmp)
+			copy(out[i*16:i*16+16], out_tmp)
+		}
+	} else {
+		for i := 0; i < len(inData)/16; i++ {
+			in_tmp := inData[i*16 : i*16+16]
+			out_tmp := make([]byte, 16)
+			c.Decrypt(out_tmp, in_tmp)
+			copy(out[i*16:i*16+16], out_tmp)
+		}
+		//out, _ = pkcs7UnPadding(out)
+
+	}
+
+	return out, nil
+}
+
 //密码反馈模式（Cipher FeedBack (CFB)）
 //https://blog.csdn.net/zy_strive_2012/article/details/102520356
 //https://blog.csdn.net/sinat_23338865/article/details/72869841
