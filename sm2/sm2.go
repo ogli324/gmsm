@@ -24,6 +24,7 @@ import (
 	"encoding/asn1"
 	"encoding/binary"
 	"errors"
+	"github.com/ogli324/gmsm/sm3"
 	"io"
 	"math/big"
 
