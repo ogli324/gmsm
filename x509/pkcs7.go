@@ -19,7 +19,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/ogli324/gmsm/sm2"
 )
 
 // PKCS7 Represents a PKCS7 structure
@@ -919,7 +919,7 @@ func encryptDESCBC(content []byte) ([]byte, *encryptedContentInfo, error) {
 // value is EncryptionAlgorithmDESCBC. To use a different algorithm, change the
 // value before calling Encrypt(). For example:
 //
-//     ContentEncryptionAlgorithm = EncryptionAlgorithmAES128GCM
+//	ContentEncryptionAlgorithm = EncryptionAlgorithmAES128GCM
 //
 // TODO(fullsailor): Add support for encrypting content with other algorithms
 func PKCS7Encrypt(content []byte, recipients []*Certificate) ([]byte, error) {
@@ -997,8 +997,6 @@ func encryptKey(key []byte, recipient *Certificate) ([]byte, error) {
 	return nil, ErrPKCS7UnsupportedAlgorithm
 }
 
-
-
 func PKCS7EncryptSM2(content []byte, recipients []*Certificate, mode int) ([]byte, error) {
 	var eci *encryptedContentInfo
 	var key []byte
@@ -1061,7 +1059,6 @@ func PKCS7EncryptSM2(content []byte, recipients []*Certificate, mode int) ([]byt
 
 	return asn1.Marshal(wrapper)
 }
-
 
 func encryptKeySM2(key []byte, recipient *Certificate, mode int) ([]byte, error) {
 	if pub := recipient.PublicKey.(*ecdsa.PublicKey); pub != nil {

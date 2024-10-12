@@ -3,12 +3,11 @@ package x509
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
+	"github.com/ogli324/gmsm/sm2"
 	"math/big"
 	"net"
 	"testing"
 	"time"
-
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 func TestPKCS7SM2(t *testing.T) {

@@ -22,13 +22,12 @@ import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
 	"fmt"
+	"github.com/ogli324/gmsm/sm2"
 	"math/big"
 	"net"
 	"reflect"
 	"testing"
 	"time"
-
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 func TestX509(t *testing.T) {

@@ -7,12 +7,11 @@ package pkcs12
 import (
 	"encoding/base64"
 	"fmt"
+	"github.com/ogli324/gmsm/sm2"
+	"github.com/ogli324/gmsm/x509"
 	"io/ioutil"
 	"os"
 	"testing"
-
-	"github.com/tjfoc/gmsm/sm2"
-	"github.com/tjfoc/gmsm/x509"
 )
 
 func Test_P12Encrypt(t *testing.T) {
